@@ -6,28 +6,27 @@
 
   
 
-**Table of Contents**
+## Table of Contents
 
-|  | Section Title |
-| --- | --- | --- |
-| 1 | Introduction and Problem Understanding |
-| 2 | Our Solution Overview |
-| 3 | Why This Model: Design Decisions |
-| 4 | End to End System Flow |
-| 5 | Parametric Trigger System |
-| 6 | AI and Machine Learning Architecture |
-| 7 | Adversarial Defense and Anti-Spoofing Strategy |
-| 8 | Multi-Agent System Design |
-| 9 | Financial Model | 
-| 10 | Stakeholder Benefits |
-| 11 | Advantages of Our Model | 
-| 12 | Limitations and Future Improvements | 
-| 13 | Technology Stack | 
-| 14 | Final Conclusion |
-| 15 | Appendix |
-  
+| No. | Section Title                                      |
+|-----|----------------------------------------------------|
+| 1   | Introduction and Problem Understanding             |
+| 2   | Our Solution Overview                              |
+| 3   | Why This Model: Design Decisions                   |
+| 4   | End to End System Flow                             |
+| 5   | Parametric Trigger System                          |
+| 6   | AI and Machine Learning Architecture               |
+| 7   | Adversarial Defense and Anti-Spoofing Strategy     |
+| 8   | Multi-Agent System Design                          |
+| 9   | Financial Model                                    |
+| 10  | Stakeholder Benefits                               |
+| 11  | Advantages of Our Model                            |
+| 12  | Limitations and Future Improvements                |
+| 13  | Technology Stack                                   |
+| 14  | Final Conclusion                                   |
+| 15  | Appendix                                          |
 
-# 1\. Introduction and Problem Understanding
+## 1\. Introduction and Problem Understanding
 
 Gig delivery workers earn on a per-order basis, making their income highly volatile and directly dependent on external conditions such as weather, pollution, and platform availability. Despite this vulnerability, they lack access to structured income protection, as traditional insurance models are incompatible with their daily earning cycles.
 
