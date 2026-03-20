@@ -282,7 +282,8 @@ The Rs. 600 payout reflects Level 2 severity, not Level 1, because 128 mm exceed
 
 The residual basis risk of Rs. 300 is intentional: the system provides liquidity support, not full indemnification. The 2-event weekly cap and Rs. 79 premium together maintain actuarial sustainability.
 
-  
+<img width="1182" height="1600" alt="image" src="https://github.com/user-attachments/assets/7601b339-36f4-4652-86f9-2b5b05af59a6" />
+
 
 # 5\. Parametric Trigger System
 
