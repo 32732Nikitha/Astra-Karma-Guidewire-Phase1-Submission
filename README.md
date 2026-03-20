@@ -34,7 +34,7 @@ BHIMA ASTRA introduces an AI-driven parametric insurance model that uses real-ti
 
 By combining predictive risk modeling with automated payout execution, the solution delivers immediate financial support during income disruptions. Designed with weekly premiums and fixed payout structures, it ensures affordability, transparency, and operational scalability for gig workers.
 
-## The Problem at Scale
+### The Problem at Scale
 
 | Metric | Figure | Significance |
 | --- | --- | --- |
@@ -52,12 +52,12 @@ These six data points define the gap this system fills: millions of workers, zer
 
 
 
-# 2\. Our Solution Overview
+## 2\. Our Solution Overview
 
 <img width="874" height="1414" alt="image" src="https://github.com/user-attachments/assets/372cd39c-4563-4aa7-8609-42b585998438" />
 
 
-## What the System Does
+### What the System Does
 
 **_BHIMA ASTRA_** is an AI-driven parametric income protection platform designed exclusively for gig delivery workers operating across Q-commerce platforms in India, including **Swiggy Instamart, BigBasket Now, Flipkart Minutes, Amazon Now, FreshToHome Express, Zepto,** and **Blinkit** \[1\]-\[7\]. It addresses one precisely defined problem: when external disruptions such as extreme rainfall, heatwaves, severe air pollution, floods, platform outages, or social disruptions such as curfews and strikes prevent a worker from completing deliveries, the worker loses income with no safety net.
 
@@ -65,7 +65,7 @@ The system detects those disruptions in real time, evaluates them against predef
 
 The policy is structured on a weekly cycle, matching the income rhythm of gig workers. Workers select from three plan tiers: **Basic (Rs. 49/week), Standard (Rs. 79/week), or Premium (Rs. 119/week)**, each with predefined payout levels and a maximum of two covered events per week. Premiums are not uniform: the AI layer personalises each worker's premium within their chosen plan based on their delivery zone, seasonal disruption risk, historical event frequency, and delivery volume. The worker owns their individual policy independently of which platform they work on.
 
-## Key Components
+### Key Components
 
 | Component | Role in System | Section Reference |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ The policy is structured on a weekly cycle, matching the income rhythm of gig wo
 | Fraud Detection Layer | GPS validation, anomaly detection, peer comparison, duplicate prevention | Section 9 |
 | Analytics Dashboard | Worker earnings view plus insurer loss ratio and predictive analytics | Section 10 |
 
-## Platform and Coverage Scope
+### Platform and Coverage Scope
 
 The system covers income loss arising from five categories of external disruption, each with predefined parametric thresholds:
 
@@ -93,17 +93,17 @@ The system covers income loss arising from five categories of external disruptio
 
 Coverage is strictly limited to income loss only. Health, life, accident, and vehicle repair claims are explicitly excluded in all plan tiers.
 
-## Deployment Model
+### Deployment Model
 
 The system operates as a standalone insurance platform. Delivery platforms (Blinkit, Zepto, Swiggy Instamart, and others) act as distribution partners, promoting the product within their worker-facing apps and earning a **5-10% commission per active policy**. This is a **bancassurance-style model** that requires no insurance liability from the platform. The worker owns their policy independently, meaning coverage persists even if the worker switches platforms. The insurer manages the risk pool, pricing engine, and payout execution directly.
 
   
 
-# 3\. Why This Model: Design Decisions
+## 3\. Why This Model: Design Decisions
 
 The problem statement explicitly requires AI risk assessment, dynamic weekly premiums, parametric triggers for weather and pollution, fraud detection, and instant payouts. These are not differentiators. Every competing team must deliver them. The five points below are design and research decisions that go beyond what is required. These differentiators are designed to improve real-world deployability, reduce basis risk, and ensure scalability across heterogeneous gig ecosystems.
 
-## Required vs. Differentiated Features
+### Required vs. Differentiated Features
 
 | Required of ALL Teams | What We Do BEYOND Requirements |
 | --- | --- |
@@ -115,13 +115,13 @@ The problem statement explicitly requires AI risk assessment, dynamic weekly pre
 | Weekly pricing model |  |
 | Income loss coverage only |  |
 
-## D1: 7-Platform Cross-Dataset AI Trained Across the Full Q-Commerce Spectrum \[1\]-\[7\]
+### D1: 7-Platform Cross-Dataset AI Trained Across the Full Q-Commerce Spectrum \[1\]-\[7\]
 
 | What It Is | Why No Other Team Will Have This |
 | --- | --- |
 | The AI models are trained on data derived from primary research across all seven Q-commerce platforms active in India: Swiggy Instamart, BigBasket Now, Flipkart Minutes, Amazon Now, FreshToHome Express, Zepto, and Blinkit [1]-[7]. Each platform has a distinct earnings structure, shift model, store type, and income volatility profile, all documented in seven dedicated ecosystem studies. | Most teams will build their risk model from one platform or from synthetic assumptions. A model trained on one platform misprices risk for all others. Zepto workers earn Rs. 50-55 per order on dense short routes; Blinkit workers earn Rs. 70 on pre-booked 5 km slots; Amazon Now workers earn Rs. 25-35 on longer routes [5][6][7]. Training across all seven produces a model accurate for the entire Q-commerce workforce. The dataset breadth is itself a research moat that cannot be replicated quickly. |
 
-### All 7 Platforms in the Training Dataset
+#### All 7 Platforms in the Training Dataset
 
 | Platform | Store Model | Earn/Order | Monthly Income | Volatility Profile | Shift Type |
 | --- | --- | --- | --- | --- | --- |
@@ -133,31 +133,31 @@ The problem statement explicitly requires AI risk assessment, dynamic weekly pre
 | Zepto [6] | Dark stores | Rs. 50-55 | Rs. 20K-21K | High density | Long cont. shifts |
 | Blinkit [7] | Dark stores | Rs. ~70 | Rs. 23K-29K | Slot-dependent | Pre-booked slots |
 
-## D2: Multi-Level Graduated Severity Bands Payout Scaled to Actual Disruption Intensity \[8\]\[9\]
+### D2: Multi-Level Graduated Severity Bands Payout Scaled to Actual Disruption Intensity \[8\]\[9\]
 
 | What It Is | Why No Other Team Will Have This |
 | --- | --- |
 | The problem statement requires triggers but does not specify how triggers should fire. This system uses three severity levels per trigger, anchored to national standards. Rainfall (IMD): >= 64.5 mm -> Rs. 300, >= 115.6 mm -> Rs. 600, >= 204.5 mm -> Rs. 1,200. Temperature (IMD): >= 40 deg C -> Rs. 300, >= 45 deg C -> Rs. 600. AQI (CPCB): >= 300 -> Rs. 300, >= 400 -> Rs. 500 [8]. The payout a worker receives scales with the disruption they actually experienced. | Single-threshold parametric systems create basis risk, which is the core trust failure documented by PwC and the World Bank in parametric insurance adoption research [9]. A worker in 65 mm rain and one in 200 mm rain both receive the same amount under a flat trigger, which feels arbitrary and reduces willingness to renew. Graduated bands directly address this: the payout is proportionate and explainable, which is critical for adoption among low-income workers who are already skeptical of insurance products. |
 
-## D3: Manager-as-Local-Intelligence Layer Human-Verified Detection for Social Disruptions \[10\]
+### D3: Manager-as-Local-Intelligence Layer Human-Verified Detection for Social Disruptions \[10\]
 
 | What It Is | Why No Other Team Will Have This |
 | --- | --- |
 | For curfews, protests, and zone shutdowns, the system proposes a manager-driven detection layer. Dark store managers flag disruptions via a dashboard, drawing on rider feedback, local awareness, and system signals (news APIs, government alerts). The system then checks route feasibility algorithmically: if no viable route exists to the delivery zone, payout triggers. If a route exists, no payout fires regardless of the flag. All manager inputs are logged and auditable, ensuring traceability and preventing misuse [10]. | The problem statement requires curfew and strike detection but does not specify how. API-only detection is noisy and delayed: news feeds report events after they have escalated, not as riders are being blocked. IMF research on social unrest forecasting confirms that ground-level human signals are faster and more locally accurate than any automated feed [10]. Route feasibility as the final arbiter also prevents both false positives and fraud. |
 
-## D4: Policy Portability Across All 7 Platforms The Worker Owns Their Coverage \[11\]
+### D4: Policy Portability Across All 7 Platforms The Worker Owns Their Coverage \[11\]
 
 | What It Is | Why No Other Team Will Have This |
 | --- | --- |
 | The worker owns their individual policy independently of which platform they work on. Coverage remains active whether a worker is delivering for Zepto one week and Blinkit the next. The platform acts only as a distribution partner: it never owns, pays for, or controls the policy. Premium is deducted from weekly earnings via the active platform but the policy belongs to the worker [11]. | Existing gig worker insurance (e.g., Zepto's GPA group policy) is platform-owned. If a worker switches platforms or goes inactive, coverage disappears instantly [11]. Given that 33% of gig workers who quit a platform eventually return, often using it as emergency income, many workers rotate across platforms regularly. Policy portability is the only design that provides continuous protection for a workforce that is structurally multi-platform. No current product offers this. |
 
-## D5: Composite Disruption Score Multi-Signal Fusion Beyond Single-API Triggers \[12\]
+### D5: Composite Disruption Score Multi-Signal Fusion Beyond Single-API Triggers \[12\]
 
 | What It Is | Why No Other Team Will Have This |
 | --- | --- |
 | Rather than firing payouts on a single API signal, the system uses a weighted Composite Disruption Score combining rainfall, AQI, traffic congestion index, and zone flood alert: Composite Score = w1 x R_norm + w2 x AQI_norm + w3 x Traffic_norm + w4 x Flood_flag. All inputs are normalized to a common scale to ensure comparability across signals. Trigger bands are evaluated against this composite, not against any one variable in isolation. Weights are tuned per city based on historical disruption patterns [12]. | The problem statement says to use weather APIs and traffic data, but using them as independent, parallel triggers means a heavy-rain day with moderate AQI and high congestion may not cross any single threshold, even though the combined effect has halted deliveries. A composite score captures the real-world truth: disruptions are multi-dimensional. This design also makes the system more robust against API failures: if one data source is unavailable, the score degrades gracefully rather than failing to trigger at all [12]. |
 
-## Differentiator Summary
+### Differentiator Summary
 
 | # | Differentiator | What It Replaces | Evidence Source |
 | --- | --- | --- | --- |
@@ -169,7 +169,7 @@ The problem statement explicitly requires AI risk assessment, dynamic weekly pre
 
   
 
-# 4\. End to End System Flow
+## 4\. End to End System Flow
 
 The system is structured as a six-stage pipeline. Each stage has clearly defined inputs, a processing function, outputs, and data sources. Stages 1 to 4 operate at policy inception (weekly), while Stages 5 and 6 operate continuously throughout the policy period.
 
@@ -237,7 +237,7 @@ Each step is represented as a self-contained visual block showing what happens, 
 | Why It Exists:   Gig workers require immediate financial support. Delayed claim processing would reduce the effectiveness of income protection. |
 | Design Justification:   Fixed payouts eliminate administrative overhead and enable rapid disbursement. The system provides partial income replacement, ensuring liquidity while maintaining financial sustainability. |
 
-## Example Scenario: Swiggy Instamart Delivery Partner Mumbai Monsoon Rainfall Event \[1\]\[8\]
+### Example Scenario: Swiggy Instamart Delivery Partner Mumbai Monsoon Rainfall Event \[1\]\[8\]
 
 | Worker | Swiggy Instamart Partner: Mumbai (High Rainfall Zone) [1] |
 | --- | --- |
@@ -265,7 +265,7 @@ Trigger Event = TRUE.
 
 Standard Plan Level 2 payout of Rs. 600 is automatically issued. \[8\]
 
-### Payout Outcome
+#### Payout Outcome
 
 | Metric | Value |
 | --- | --- |
@@ -284,11 +284,11 @@ The residual basis risk of Rs. 300 is intentional: the system provides liquidity
 <img width="1182" height="1600" alt="image" src="https://github.com/user-attachments/assets/7601b339-36f4-4652-86f9-2b5b05af59a6" />
 
 
-# 5\. Parametric Trigger System
+## 5\. Parametric Trigger System
 
 The parametric trigger system forms the core decision engine of **_BHIMA ASTRA_**. Rather than relying on subjective loss assessment, it uses objective, pre-defined thresholds sourced from India Meteorological Department (IMD) and Central Pollution Control Board (CPCB) national standards \[8\]. When real-time data crosses a threshold and the worker is confirmed active in the affected zone, the payout fires automatically.
 
-## Trigger Thresholds and Payout Levels \[8\]\[9\]
+### Trigger Thresholds and Payout Levels \[8\]\[9\]
 
 | Trigger Type | Level | Threshold | Standard | Basic Plan | Standard Plan | Premium Plan |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -302,7 +302,7 @@ The parametric trigger system forms the core decision engine of **_BHIMA ASTRA_*
 | Flood / Zone Shutdown [8] | -- | Flood alert = 1 | State / IMD alert | Plan payout | Plan payout | Plan payout |
 | Platform Outage / Curfew | -- | Outage flag or manager-verified | System/Manager | Plan payout | Plan payout | Plan payout |
 
-## Composite Disruption Score \[12\]
+### Composite Disruption Score \[12\]
 
 Rather than evaluating triggers independently, the system computes a weighted Composite Disruption Score that fuses multiple environmental signals. This ensures that combined adverse conditions, even when no single variable crosses its threshold, are properly captured and evaluated \[12\].
 
@@ -313,7 +313,7 @@ This design makes the system more robust against API failures. If one data sourc
 
   
 
-# 6\. AI and Machine Learning Architecture
+## 6\. AI and Machine Learning Architecture
 
 The AI layer is designed to enable data-driven, actuarially consistent, and personalised insurance pricing for gig delivery workers operating under uncertain environmental conditions. The system integrates three interconnected models: an Income Prediction Model, a Disruption Risk Prediction Model, and a Premium Adjustment Model.
 
@@ -328,21 +328,21 @@ These models operate as a closed actuarial decision loop, where each stage direc
 | S_(event)        =  severity factor from parametric trigger thresholds [Section 5] |
 |  |
 
-## 6.1 Income Prediction Model
+### 6.1 Income Prediction Model
 
-### Purpose
+#### Purpose
 
 The Income Prediction Model estimates the expected daily and weekly earnings of a gig delivery worker under normal, undisrupted operating conditions. This predicted income serves as the baseline for all downstream insurance computations, including income loss estimation, coverage determination, and premium pricing.
 
 Unlike salaried employment, gig worker income is inherently stochastic and depends on multiple interacting factors such as order volume, working hours, surge demand, incentives, and geographic demand variability \[2\]\[3\]\[4\]. Empirical analysis across multiple quick-commerce platforms shows that daily earnings range from Rs. 560 to Rs. 3,000, with an average of approximately Rs. 1,350, while weekly earnings vary between Rs. 4,000 and Rs. 21,000 depending on worker activity and zone characteristics \[1\]\[5\].
 
-### Algorithm: Random Forest Regressor \[13\]
+#### Algorithm: Random Forest Regressor \[13\]
 
 The income prediction task is formulated as a supervised regression problem and implemented using a Random Forest Regressor. This model is selected due to its strong performance on structured, high-dimensional datasets and its ability to capture complex, non-linear relationships between multiple input variables \[13\]\[14\].
 
 Random Forest operates by aggregating predictions from multiple decision trees trained on different subsets of the data, resulting in reduced variance and improved generalisation, robustness to noise and outliers (e.g., surge spikes), and the ability to model interaction effects without explicit feature engineering. Studies in income and salary prediction consistently demonstrate that ensemble tree-based models outperform linear regression in multi-factor scenarios involving behavioural and contextual features \[14\]\[15\].
 
-### Model Inputs
+#### Model Inputs
 
 | Variable | Description | Type | Source |
 | --- | --- | --- | --- |
@@ -355,14 +355,14 @@ Random Forest operates by aggregating predictions from multiple decision trees t
 | Day of Week | Demand variation pattern | Derived | [5] |
 | Experience Level | Worker tenure (years) | Observed | [5] |
 
-### Model Outputs
+#### Model Outputs
 
 | Output Variable | Description | Range | Role in System |
 | --- | --- | --- | --- |
 | expected_income | Predicted daily earnings | Rs. 560 to Rs. 3,000 | Baseline income estimation |
 | income_baseline_weekly | Predicted weekly earnings | Rs. 4,000 to Rs. 21,000 | Coverage and pricing anchor |
 
-### Income Loss Estimation
+#### Income Loss Estimation
 
 |  |
 | --- |
@@ -377,17 +377,17 @@ Random Forest operates by aggregating predictions from multiple decision trees t
 | Loss                  =  Rs. 900 |
 |  |
 
-## 6.2 Disruption Risk Prediction Model
+### 6.2 Disruption Risk Prediction Model
 
-### Purpose
+#### Purpose
 
 The Disruption Risk Prediction Model estimates the probability that one or more parametric trigger events will occur in a worker's delivery zone during the upcoming 7-day policy period. Unlike traditional insurance models that rely on static, city-level averages, this model generates zone-specific, time-sensitive probability estimates, allowing the system to dynamically adjust risk based on real environmental and operational conditions \[16\]\[17\].
 
-### Algorithm: XGBoost Classifier \[16\]
+#### Algorithm: XGBoost Classifier \[16\]
 
 The disruption prediction problem is formulated as a supervised classification task and implemented using XGBoost (Extreme Gradient Boosting). XGBoost is selected due to its strong performance on structured datasets, particularly in scenarios involving environmental variables and risk prediction \[16\]\[17\].
 
-### Model Inputs
+#### Model Inputs
 
 | Variable | Description | Range | Type | Source |
 | --- | --- | --- | --- | --- |
@@ -400,7 +400,7 @@ The disruption prediction problem is formulated as a supervised classification t
 | Traffic Index | Road congestion level | 0-100 | Observed | [18] |
 | Historical Disruption Frequency | Past event rate in zone | Derived | Derived | [5] |
 
-### Model Outputs
+#### Model Outputs
 
 | Output Variable | Description | Range | Role in System |
 | --- | --- | --- | --- |
@@ -420,9 +420,9 @@ Using representative values: \[6\]\[7\]
 
 ![](data:image/png;base64,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)  
 
-## 6.3 Premium Adjustment Model (Dynamic Pricing) \[19\]\[20\]
+### 6.3 Premium Adjustment Model (Dynamic Pricing) \[19\]\[20\]
 
-### Purpose
+#### Purpose
 
 The Premium Adjustment Model converts the expected loss derived from Models 6.1 and 6.2 into a final, personalised weekly premium for each worker. This model ensures that pricing is not fixed or uniform but dynamically reflects the worker's income level, geographic exposure, and environmental risk conditions. Unlike traditional insurance systems where all users in a category pay the same premium, this system introduces intra-plan personalisation, improving actuarial fairness and reducing adverse selection \[19\]\[20\].
 
@@ -442,7 +442,7 @@ Using representative values:
 
 This represents the **full-risk premium**, i.e., the theoretical price required to fully cover expected losses and operational costs \[6\].
 
-### Tiered Plan Structure
+#### Tiered Plan Structure
 
 | Plan | Weekly Premium | Payout per Event | Max Events/Week | Max Payout | Target Segment |
 | --- | --- | --- | --- | --- | --- |
@@ -450,7 +450,7 @@ This represents the **full-risk premium**, i.e., the theoretical price required
 | Standard | Rs. 79 | Rs. 400 | 2 | Rs. 800 | Regular workers |
 | Premium | Rs. 119 | Rs. 600 | 2 | Rs. 1,200 | High-income / full-time |
 
-### Dynamic Adjustment Factors
+#### Dynamic Adjustment Factors
 
 | Factor | Effect on Premium | Source |
 | --- | --- | --- |
@@ -462,17 +462,16 @@ This represents the **full-risk premium**, i.e., the theoretical price required
 
 Dynamic pricing in insurance has been shown to improve risk alignment and reduce adverse selection by ensuring that lower-risk users are not overcharged while higher-risk users are priced appropriately \[19\]\[20\]\[21\].
 
-### Integration with Parametric System
+#### Integration with Parametric System
 
 Once the premium is finalised and the worker subscribes, the system monitors environmental triggers in real time (Section 5). When a predefined threshold is crossed, payout is executed automatically. No claim submission or verification is required. The AI layer therefore determines how much to charge while the parametric system determines when to pay. This separation ensures that the system remains fully parametric, automated, and scalable, while still leveraging AI for accurate risk-based pricing.
 
-#  
 
-# 7\. Adversarial Defense and Anti-Spoofing Strategy
+## 7\. Adversarial Defense and Anti-Spoofing Strategy
 
 Parametric insurance fires automatic payouts on objectively measured events like rainfall, AQI, heatwave, and flood alert, thus removing all administrative friction. This same design, however, changes the fraud surface entirely: because payouts trigger on environmental data rather than individual declarations, the attack vector shifts from falsifying loss documentation to falsifying presence in the disrupted zone at the moment of the trigger.
 
-**In Q-commerce gig insurance this takes two principal forms:**
+### **In Q-commerce gig insurance this takes two principal forms:**
 
 (1) Individual GPS spoofing, where a worker overrides the phone's GPS output using a freely available Android app to report disruption-zone coordinates while remaining at home.
 
@@ -485,7 +484,7 @@ The DEVTrails 2026 threat report confirmed this precisely: 500 workers exploited
 | BHIMA ASTRA treats fraud detection as a signal separation problem: |
 | distinguishing real-world disruption behavior from simulated presence under adversarial conditions. |
 
-## 7.1 Limitations of Existing Approaches
+### 7.1 Limitations of Existing Approaches
 
 Rule-based systems are the most widely deployed fraud control in insurance \[22\], but they have no temporal memory and evaluate each claim at a single instant, unable to distinguish a genuine worker who lost GPS lock in a storm from one spoofing coordinates at home. Isolation Forest detects statistical outliers \[23\] but scores every claimant in isolation: a ring of 200 workers filing simultaneously appears as 200 individually marginal anomalies, because the algorithm cannot represent the connections between them \[24\]. XGBoost excels on tabular claim data \[16\]\[25\] but processes each record as an independent row and cannot learn that a worker stationary for 40 minutes before a trigger, who files within 60 seconds of its timestamp, presents a fundamentally different behavioral profile from an active worker.
 
@@ -495,7 +494,7 @@ Rule-based systems are the most widely deployed fraud control in insurance \[22\
 | BHIMA ASTRA asks:   "Is this physically plausible and socially independent?" |
 | The distinction is the entire design. |
 
-## 7.2 Original Contributions
+### 7.2 Original Contributions
 
 | Contribution | Description |
 | --- | --- |
@@ -504,9 +503,9 @@ Rule-based systems are the most widely deployed fraud control in insurance \[22\
 | C3: Agent-based orchestration | Adaptive cluster-context escalation, stateful 48-hour hold/release lifecycle, and weekly online learning from confirmed fraud outcomes. |
 | C4: Parametric-specific design | Covers all five Q-commerce disruption triggers: rainfall, AQI, heatwave, flood alert, and platform outage. Designed for gig workers, not generic insurance claimants. |
 
-## 7.3 Core Detection Architecture
+### 7.3 Core Detection Architecture
 
-### Stage 1: Deterministic Filtering Layer (~80% of claims)
+#### Stage 1: Deterministic Filtering Layer (~80% of claims)
 
 Resolves approximately 80% of claims with zero ML overhead through contract rules and four anti-spoofing checks:
 
@@ -518,7 +517,7 @@ Resolves approximately 80% of claims with zero ML overhead through contract rule
 
 •        Device fingerprinting: A previously flagged device ID triggers an immediate audit hold. Clean claims score 0.0 and are paid within 5 minutes.
 
-### Stage 2: Behavioral Intelligence Layer (~15% of claims)
+#### Stage 2: Behavioral Intelligence Layer (~15% of claims)
 
 A lightweight LSTM network evaluates the 10-minute behavioral time series around the trigger event \[26\]. The fraud signal lies in the sequence and rhythm of features, not any single snapshot. A genuine rider shows GPS jitter correlated with motion spikes, app interactions, and tower transitions; a spoofer at home shows a flat accelerometer, zero app events, and a single static tower. No non-sequential model captures this distinction \[26\]\[22\].
 
@@ -538,15 +537,15 @@ A lightweight LSTM network evaluates the 10-minute behavioral time series around
 | Cell tower transition | New tower connection within minute | 0 / 1 | Binary |
 | Order status event | Delivery status change within minute | 0 / 1 | Binary |
 
-### Stage 3: Relational Intelligence Layer (~4% of claims)
+#### Stage 3: Relational Intelligence Layer (~4% of claims)
 
 Individual LSTM scores for ring members typically sit at 0.25-0.30, each plausible alone. Yet the ring leaves an unmistakable relational signature: same filing window, GPS clustered within an impossible radius, identical device model and OS, same IP subnet \[28\]\[29\]\[24\]. For each trigger event, a claim graph is constructed where nodes represent workers and edges connect those sharing multiple signals such as time window, location proximity, device similarity, or IP subnet. Louvain community detection \[29\] identifies dense clusters of coordinated workers; groups above threshold size are flagged as potential fraud rings and the entire cohort is held. Phase 3 upgrades to a GCN (PyTorch Geometric) with learned edge weights \[30\]\[31\].
 
-### Stage 4: Decision Intelligence Layer (~1% of claims)
+#### Stage 4: Decision Intelligence Layer (~1% of claims)
 
 The Fraud Agent acts as the system's decision layer, combining signals across stages and enabling context-aware escalation that no standalone model can achieve. A worker scoring 0.28, individually below threshold, who belongs to a cluster of 14 workers all scoring 0.22 to 0.30 is routed to Stage 3, because the agent holds the joint cluster distribution in context. It manages the full claim lifecycle: escalation, 48-hour hold decisions, and automated release, ensuring consistent and stateful execution. Confirmed outcomes feed the Insight Agent's weekly retraining cycle, continuously improving LSTM and GNN accuracy from real operational data, a feedback loop absent from every static fraud pipeline.
 
-## 7.4 Cost Cascade and System Advantages
+### 7.4 Cost Cascade and System Advantages
 
 | Stage | Model | Claims % | Cost | Fraud Signal Detected |
 | --- | --- | --- | --- | --- |
@@ -555,7 +554,7 @@ The Fraud Agent acts as the system's decision layer, combining signals across st
 | Stage 3 | Louvain / GCN | ~4% | ~50 ms CPU | Coordinated ring / syndicate fraud |
 | Stage 4 | LLM Agent (RAG) | ~1% | ~500 ms API | Edge cases and full audit documentation |
 
-## 7.5 Fraud Resilience Scenarios
+### 7.5 Fraud Resilience Scenarios
 
 | Scenario | Situation | System Response | Result |
 | --- | --- | --- | --- |
@@ -565,7 +564,7 @@ The Fraud Agent acts as the system's decision layer, combining signals across st
 
   
 
-# 8\. Multi-Agent System Design
+## 8\. Multi-Agent System Design
 
 The system employs a multi-agent architecture that coordinates real-time monitoring, fraud detection, claims processing, and decision escalation across specialized agent roles. Each agent is purpose-built for a specific function within the insurance pipeline, enabling parallel processing, stateful lifecycle management, and continuous improvement through online learning.
 
@@ -582,7 +581,7 @@ The D3 differentiator, the **Manager-as-Local-Intelligence Layer**, is embedded 
 
   
 
-# 9\. Financial Model
+## 9\. Financial Model
 
 **THE MARKET OPPORTUNITY**
 
@@ -594,9 +593,9 @@ The D3 differentiator, the **Manager-as-Local-Intelligence Layer**, is embedded 
 
 These six numbers define the gap this system fills. Millions of workers, zero protection, a measurable and insurable risk.
 
-## 9.1 Delivery Partners (The Worker)
+### 9.1 Delivery Partners (The Worker)
 
-### Their Reality Today
+#### Their Reality Today
 
 | Metric | Value |
 | --- | --- |
@@ -606,7 +605,7 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Income drop on a disrupted day | Rs. 560-900 lost per event day [7][10] |
 | Existing income protection | None (structured) [6] |
 
-### What _BHIMA ASTRA_ Delivers for Workers
+#### What _BHIMA ASTRA_ Delivers for Workers
 
 | Benefit | Detail |
 | --- | --- |
@@ -616,9 +615,9 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Standard plan Rs. 800 payout: 17% income replacement | On a disrupted week where income falls to Rs. 600, Rs. 800 is meaningful liquidity. [32][10] |
 | Evidence from real-world pilot implementations | Jan Sahas parametric pilot (India): informal workers received Rs. 1,000 payouts during heatwaves. Same trigger model. [34] |
 
-## 9.2 Delivery Platforms
+### 9.2 Delivery Platforms
 
-### Why Platforms Will Participate
+#### Why Platforms Will Participate
 
 | Value Proposition | Detail |
 | --- | --- |
@@ -628,12 +627,12 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Public reputation: a verifiable welfare story | Swiggy introduced accident cover due to media and protest pressure. [38] Our model gives platforms the same story at zero premium cost. |
 | No financial liability | Platform is distributor only. It never underwrites risk, never pays claims, and never owns any policy. |
 
-### Platform Commission: Structured Illustration
+#### Platform Commission: Structured Illustration
 
 | Scenario: 1 platform, 1 major city (e.g. Blinkit, Mumbai)Active delivery fleet             =  50,000 workersAdoption rate (conservative 20%)  =  10,000 policiesAverage weekly premium            =  ₹75Platform commission rate          =  7.5%═══════════════════════════════════════════════════→  Weekly commission income       =  ₹56,250→  Annual commission income       =  ₹29.2 Lakh  (single city, 1 platform) Note: Commission earned purely from distribution — no capital, no risk. |
 | --- |
 
-## 9.3 Insurance Provider (The Insurer)
+### 9.3 Insurance Provider (The Insurer)
 
 | Structural Advantage | Detail |
 | --- | --- |
@@ -643,9 +642,9 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | AI risk pricing reduces adverse selection | XGBoost zone_risk_score prices each worker by actual zone and season. High-risk zones priced higher. [10] |
 | Risk pool cross-subsidy | Premium plan (Rs. 119) cross-subsidises Basic plan (Rs. 49). Larger pool = more stable loss ratio over time. [10] |
 
-## 9.4 Revenue Model: Phased Rollout
+### 9.4 Revenue Model: Phased Rollout
 
-### Phase 1: Pilot Deployment (1 platform x 1 city)
+#### Phase 1: Pilot Deployment (1 platform x 1 city)
 
 | Parameter | Value |
 | --- | --- |
@@ -659,7 +658,7 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Surplus | Rs. 1.09 Cr - Rs. 0.70 Cr = Rs. 0.39 Crore |
 | Break-even threshold | ~2,000-2,500 policyholders |
 
-### Phase 2: Controlled Expansion (2-3 cities x 2 platforms)
+#### Phase 2: Controlled Expansion (2-3 cities x 2 platforms)
 
 | Parameter | Value |
 | --- | --- |
@@ -671,7 +670,7 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Annual claims | 22,500 x 0.55 x 9 x Rs. 400 = approx. Rs. 4.45 Crore |
 | Loss ratio | ~50-55% |
 
-### Phase 3: Mature Scale (3 platforms x major metro clusters)
+#### Phase 3: Mature Scale (3 platforms x major metro clusters)
 
 | Parameter | Value |
 | --- | --- |
@@ -683,7 +682,7 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 | Annual claims | 100,000 x 0.55 x 9 x Rs. 400 = approx. Rs. 19.8 Crore |
 | Loss ratio | ~50-60% |
 
-## 9.5 Sensitivity Analysis
+### 9.5 Sensitivity Analysis
 
 | Scenario | Parameter Change | Impact | Result |
 | --- | --- | --- | --- |
@@ -697,7 +696,7 @@ These six numbers define the gap this system fills. Millions of workers, zero pr
 
   
 
-# 10\. Stakeholder Benefits
+## 10\. Stakeholder Benefits
 
 | Stakeholder | Primary Value | Key Number |
 | --- | --- | --- |
@@ -709,7 +708,7 @@ This combination of scale, data availability, and measurable disruption risk mak
 
   
 
-# 11\. Advantages of Our Model
+## 11\. Advantages of Our Model
 
 | Advantage | Description |
 | --- | --- |
@@ -726,9 +725,9 @@ This combination of scale, data availability, and measurable disruption risk mak
 
   
 
-# 12\. Limitations and Future Improvements
+## 12\. Limitations and Future Improvements
 
-## Known Limitations
+### Known Limitations
 
 | Limitation | Description | Mitigation in Current Design |
 | --- | --- | --- |
@@ -738,7 +737,7 @@ This combination of scale, data availability, and measurable disruption risk mak
 | Coverage Exclusions | Health, life, accident, and vehicle repair claims are explicitly out of scope. Workers face additional vulnerabilities beyond income disruption. | Scope kept narrow to ensure actuarial sustainability. Expansion considered for Phase 3 and beyond. |
 | Urban Concentration | Initial deployment targets Tier-1 cities where API data coverage is reliable. Tier-2 and rural coverage may be limited. | Phased rollout design accounts for this; Tier-2 expansion planned in Phase 2. |
 
-## Future Improvements (Planned for Phase 2 and Beyond)
+### Future Improvements (Planned for Phase 2 and Beyond)
 
 •        Seasonal model recalibration: Automated re-training of AI models at the onset of monsoon, summer, and winter seasons to maintain prediction accuracy.
 
@@ -756,7 +755,7 @@ This combination of scale, data availability, and measurable disruption risk mak
 
   
 
-# 13\. Technology Stack
+## 13\. Technology Stack
 
 The technology stack is designed for real-time data ingestion, low-latency inference, and scalable payout execution. Full stack details will be provided in Phase 2 submission.
 
@@ -990,7 +989,7 @@ Worker interface — onboarding, plan selection, policy status, payout history, 
 
 ·       Free-tier cloud hosting for FastAPI + PostgreSQL; Celery agents as background services.
 
-**10.1  Technology Decision Rationale**
+### 13.1  Technology Decision Rationale
 
 Every technology was chosen for a specific reason tied to the system's constraints: CPU-first inference, free-tier APIs, 30-day build timeline, and India's gig payment context.
 
@@ -1007,7 +1006,7 @@ Every technology was chosen for a specific reason tied to the system's constrain
 | Redis fallback cache | Hard fail on API timeout | Workers must not lose coverage due to third-party downtime | Resilient trigger evaluation under partial API outage |
 | Pandas feature pipelines | Ad-hoc preprocessing in notebooks | Centralised, tested pipelines enforce data contracts across all models | Feature consistency between training and inference environments |
 
-**10.2  Weekly Inference Economics**
+### 10.2  Weekly Inference Economics
 
 The cascade ensures compute cost scales with suspicion level, not claim volume. Across 10,000 weekly claims, total inference spend is under $2 USD.
 
@@ -1039,7 +1038,7 @@ The cascade ensures compute cost scales with suspicion level, not claim volume. 
 
 # In the end, choosing web development was not just a technical decision. It was a decision aligned with accessibility, scalability, and real-world usability. It ensures that the solution is not only built well, but also used.
 
-# 14\. Final Conclusion
+## 14\. Final Conclusion
 
 India's gig delivery workforce is one of the fastest-growing labour segments in the world, yet it operates without any structured income protection. When rainfall floods a city, temperatures spike during a heatwave, or air quality reaches hazardous levels, millions of workers simply lose income with no recourse, no savings, and no safety net.
 
@@ -1154,7 +1153,7 @@ Key Insight: Gig worker income is stochastic and highly sensitive to external en
 
   
 
-# References
+## References
 
 All references below are Q-commerce and directly related research used in this document.
 
