@@ -1028,25 +1028,25 @@ The cascade ensures compute cost scales with suspicion level, not claim volume. 
 | Stage 4 | LLM API (Claude Haiku) | ~100  (1%) | ~$0.01 | ~$1.00 / week |
 | Total | Full cascade | 10,000 claims | — | < $2 USD / week |
 
-# Justification for our choosing for Web Platform:
+### Justification for our choosing for Web Platform:
 
-# When we started building BHIMA ASTRA, one question stayed with us throughout the process:
+### When we started building BHIMA ASTRA, one question stayed with us throughout the process:
 
-# how do we make this solution actually reachable to the people who need it the most?
+### how do we make this solution actually reachable to the people who need it the most?
 
-# Gig delivery workers do not operate in a controlled environment. They are constantly moving, switching locations, working across different platforms, and using a wide range of devices. Building something that depends on a specific device type or installation requirement would immediately create barriers.
+### Gig delivery workers do not operate in a controlled environment. They are constantly moving, switching locations, working across different platforms, and using a wide range of devices. Building something that depends on a specific device type or installation requirement would immediately create barriers.
 
-# That is why we chose web development.
+### That is why we chose web development.
 
-# A web-based system allows instant access without requiring downloads, updates, or storage space. A worker can open the platform on any device, at any time, and immediately interact with their policy, payouts, and data. This simplicity is important because in real-world scenarios, even small friction points can lead to drop-offs.
+### A web-based system allows instant access without requiring downloads, updates, or storage space. A worker can open the platform on any device, at any time, and immediately interact with their policy, payouts, and data. This simplicity is important because in real-world scenarios, even small friction points can lead to drop-offs.
 
-# Another important reason was scalability. Our system depends on real-time data ingestion, AI-driven processing, and continuous monitoring of environmental signals. A web architecture allows us to centralize these operations while ensuring that updates are reflected instantly for all users without requiring any manual intervention from their side.
+### Another important reason was scalability. Our system depends on real-time data ingestion, AI-driven processing, and continuous monitoring of environmental signals. A web architecture allows us to centralize these operations while ensuring that updates are reflected instantly for all users without requiring any manual intervention from their side.
 
-# We also considered integration. BHIMA ASTRA is designed to work alongside multiple Q-commerce platforms. A web-based approach makes it easier to integrate APIs, dashboards, and partner systems without being tied to a single ecosystem.
+### We also considered integration. BHIMA ASTRA is designed to work alongside multiple Q-commerce platforms. A web-based approach makes it easier to integrate APIs, dashboards, and partner systems without being tied to a single ecosystem.
 
-# Most importantly, web development allowed us to design for inclusivity. The goal was not just to build a technically strong system, but to ensure that it is usable by someone who may not be highly tech-savvy. A simple interface, accessible through a browser, reduces complexity and makes the system feel approachable.
+### Most importantly, web development allowed us to design for inclusivity. The goal was not just to build a technically strong system, but to ensure that it is usable by someone who may not be highly tech-savvy. A simple interface, accessible through a browser, reduces complexity and makes the system feel approachable.
 
-# In the end, choosing web development was not just a technical decision. It was a decision aligned with accessibility, scalability, and real-world usability. It ensures that the solution is not only built well, but also used.
+### In the end, choosing web development was not just a technical decision. It was a decision aligned with accessibility, scalability, and real-world usability. It ensures that the solution is not only built well, but also used.
 
 ## 14\. Final Conclusion
 
